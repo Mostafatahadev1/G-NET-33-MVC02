@@ -23,3 +23,5 @@ app.MapControllerRoute(
 
 
 app.Run();
+
+Console.WriteLine("Hellow World");

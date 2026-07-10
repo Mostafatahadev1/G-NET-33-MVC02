@@ -29,5 +29,7 @@ namespace Gym.Presentation.Controllers
 
             return View(plan);
         }
+
+
     }
 }

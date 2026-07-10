@@ -6,9 +6,10 @@ namespace Gym.Presentation.Presentation.Data.Seeder
 {
     public  static class PlanSeeder
     {
-        public static async Task SeedAsync()
+        // Static => Static instance 
+        public static async Task SeedAsync(GymDbContext dbContext)
         {
-         using var dbContext = new GymDbContext();
+
 
 
             if (await dbContext.Plans.AnyAsync())

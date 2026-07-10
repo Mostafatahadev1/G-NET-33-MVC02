@@ -1,4 +1,14 @@
+using Gym.Presentation.Data.Contexts;
+using Gym.Presentation.Data.Seeder;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+builder.Services.AddDbContext<GymDbContext>(option =>
+{
+    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -20,6 +30,13 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
+
+await using var Scope = app.Services.CreateAsyncScope();
+
+
+var dbContext = Scope.ServiceProvider.GetRequiredService<GymDbContext>();
+
+await DatabaseSeeder.SeedAllAsync(dbContext);
 
 
 app.Run();

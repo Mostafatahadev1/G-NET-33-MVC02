@@ -1,33 +1,33 @@
-﻿using Gym.Presentation.Data.Contexts;
+﻿using Gym.DataAccess.Repositries;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace Gym.Presentation.Controllers
 {
     public class PlansController : Controller
     {
-        public GymDbContext Context =new GymDbContext();
-        public async Task<IActionResult>Index()
+        public IPlanRepository PlanRepo = new PlanRepository();
+
+        public async Task<IActionResult> Index()
         {
-            var Plans = await Context.Plans.ToListAsync();
-            return View(Plans);
+            var plans = await PlanRepo.GetAllAsync();
+            return View(plans);
         }
 
-        public async Task<IActionResult>Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
-
             if (id <= 0)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Index));
             }
-            var plan = await Context.Plans.FirstOrDefaultAsync(p => p.Id == id);
+
+            var plan = await PlanRepo .GetByIdAsync(id);
+
             if (plan == null)
             {
-                return RedirectToAction(nameof(Index)); // Return 302       Location         
-              
+                return RedirectToAction(nameof(Index));
             }
-            return View(plan);//views / plans/details.cshtml
-        }
 
+            return View(plan);
+        }
     }
 }

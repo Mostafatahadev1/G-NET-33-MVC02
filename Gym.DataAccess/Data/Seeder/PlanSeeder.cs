@@ -1,5 +1,5 @@
-﻿using Gym.Presentation.Data.Contexts;
-using Gym.Presentation.Models;
+﻿using Gym.DataAccess.Models;
+using Gym.Presentation.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 
 namespace Gym.Presentation.Presentation.Data.Seeder

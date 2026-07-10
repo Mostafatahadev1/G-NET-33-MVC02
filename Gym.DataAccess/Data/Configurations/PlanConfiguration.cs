@@ -1,4 +1,4 @@
-﻿using Gym.Presentation.Models;
+﻿using Gym.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Gym.Presentation.Data.Configurations

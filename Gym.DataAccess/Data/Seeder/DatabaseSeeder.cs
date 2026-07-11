@@ -1,4 +1,5 @@
-﻿using Gym.Presentation.Data.Contexts;
+﻿using Gym.DataAccess.Data.Seeder;
+using Gym.Presentation.Data.Contexts;
 using Gym.Presentation.Presentation.Data.Seeder;
 
 namespace Gym.Presentation.Data.Seeder
@@ -8,6 +9,8 @@ namespace Gym.Presentation.Data.Seeder
         public static async Task SeedAllAsync(GymDbContext dbContext)
         {
             await PlanSeeder.SeedAsync(dbContext); 
+
+            await CategorySeeder.SeedAsync(dbContext);
         }
     }
 }

@@ -109,9 +109,7 @@ namespace Gym.Presentation.Presentation.Data.Seeder
                 }
             };
 
-            await dbContext.Plans.AddRangeAsync(plans);
-            await dbContext.SaveChangesAsync();
-
+            
         }
     }
 }

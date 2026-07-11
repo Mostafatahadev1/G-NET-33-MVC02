@@ -1,4 +1,4 @@
-﻿using Gym.DataAccess.Models;
+﻿using Gym.DataAccess.Entities;
 using Gym.Presentation.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System;

@@ -1,17 +1,24 @@
-﻿using Gym.DataAccess.Models;
+﻿using Gym.DataAccess.Entities;
+using Gym.DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Gym.Presentation.Data.Contexts
+namespace Gym.Presentation.Data.Contexts;
+
+public class GymDbContext : DbContext
 {
-    public class GymDbContext : DbContext
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-     
-
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(GymDbContext).Assembly);
-        }
-
-        public DbSet<Plan> Plans { get; set; } = default!;
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(GymDbContext).Assembly);
     }
+
+    public DbSet<DataAccess.Entities.Plan> Plans { get; set; } = default!;
+
+    public DbSet<Category> Categories { get; set; }
+
+    public DbSet<Member> Members { get; set; }
+
+    public DbSet<User> Users { get; set; }
+
+
+
 }

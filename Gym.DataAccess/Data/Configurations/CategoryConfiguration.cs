@@ -11,9 +11,13 @@ namespace Gym.DataAccess.Data.Configurations
             builder.Property(C => C.Name)
                 .HasMaxLength(20);
 
-             
+
+            builder.HasQueryFilter(c => !c.IsDeleted);
 
 
         }
+
+
+
     }
 }

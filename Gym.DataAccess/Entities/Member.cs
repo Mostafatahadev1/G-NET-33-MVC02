@@ -14,8 +14,16 @@ namespace Gym.DataAccess.Entities
 
         // Health Record 
 
-        // ICollection<Bookings>
+        public HealthRecord HealthRecord { get; set; } = null!;
 
-        //ICollection<MemberShips>
+
+        public ICollection<Booking> Bookings { get; set; }
+                     = new HashSet<Booking>();
+
+        public ICollection<MemberShip> MemberShips { get; set; }
+            = new HashSet<MemberShip>();
+
     }
+
+
 }

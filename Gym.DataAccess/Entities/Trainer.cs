@@ -16,5 +16,9 @@ namespace Gym.DataAccess.Entities
 
         // ICollection <Sessions>
 
+        public ICollection<Session> Sessions { get; set; } = [];
+
+
+
     }
 }

@@ -26,5 +26,9 @@ public class PlanConfiguration : IEntityTypeConfiguration<Plan>
 
         builder.HasIndex(b => b.Name)
                .IsUnique();
+
+
+        builder.HasQueryFilter(p => !p.IsDeleted);
+
     }
 }

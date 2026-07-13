@@ -55,7 +55,7 @@ public class UserConfiguration<T> : IEntityTypeConfiguration<T>
 
         builder.ToTable(t =>
         {
-            t.HasCheckConstraint("User_Phone_CK", "LEN([Phone]) = 11 AND[Phone] LIKE 01[0125]%'");
+            t.HasCheckConstraint("CK_User_Phone", "LEN([Phone]) = 11 AND[Phone] LIKE 01[0125]%'");
         });
 
 

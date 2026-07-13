@@ -6,6 +6,12 @@ namespace Gym.Presentation.Data.Contexts;
 
 public class GymDbContext : DbContext
 {
+
+    public GymDbContext (DbContextOptions options) : base(options)
+    {
+
+
+    }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(GymDbContext).Assembly);
@@ -19,6 +25,13 @@ public class GymDbContext : DbContext
 
     public DbSet<User> Users { get; set; }
 
+    public DbSet<Session> Sessions { get; set; }
+
+    public DbSet<MemberShip> memberShips { get; set; }
+
+    public DbSet<Booking> Bookings { get; set; }
+
+    public DbSet<HealthRecord> HealthRecords { get; set; }
 
 
 }

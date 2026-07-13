@@ -1,6 +1,8 @@
 using Gym.Presentation.Data.Contexts;
 using Gym.Presentation.Data.Seeder;
 using Microsoft.EntityFrameworkCore;
+using Gym.DataAccess.Repositries;
+using Gym.DataAccess.Repositries; // ??? ??? ??? ?????? Repositories
 
 var builder = WebApplication.CreateBuilder(args);
 

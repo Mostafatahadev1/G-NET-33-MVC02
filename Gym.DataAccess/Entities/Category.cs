@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Gym.DataAccess.Entities
 {
-    public class Category
+    public class Category : BaseEntity
     {
         public string Name { get; set; } = null!;
 
         // TODO : ICollection Of Sessions
+
+        public ICollection<Session> Sessions { get; set; } = [];
     }
 }

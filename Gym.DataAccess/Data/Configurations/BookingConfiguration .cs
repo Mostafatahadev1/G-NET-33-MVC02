@@ -10,11 +10,8 @@ namespace Gym.DataAccess.Configurations
         {
             builder.ToTable("Bookings");
 
-
-
             builder.Property(x => x.IsAttended)
                    .HasDefaultValue(false);
-
 
             builder.HasIndex(x => new
             {
@@ -22,16 +19,15 @@ namespace Gym.DataAccess.Configurations
                 x.SessionId
             }).IsUnique();
 
+            builder.HasOne(b => b.Member)
+                   .WithMany(m => m.Bookings)
+                   .HasForeignKey(b => b.MemberId)
+                   .OnDelete(DeleteBehavior.NoAction);
 
-
-
-            builder.ToTable(t =>
-            {
-                t.HasCheckConstraint(
-                    "CK_Booking_Date",
-                    "[Date] <= GETDATE()");
-            }); 
-
+            builder.HasOne(b => b.Session)
+                   .WithMany(s => s.Bookings)
+                   .HasForeignKey(b => b.SessionId)
+                   .OnDelete(DeleteBehavior.NoAction);
         }
     }
 }

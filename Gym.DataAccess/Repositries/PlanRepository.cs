@@ -9,12 +9,8 @@ using System.Threading.Tasks;
 
 namespace Gym.DataAccess.Repositries
 {
-    public class PlanRepository (GymDbContext dbContext): IPlanRepository
+    public class PlanRepository(GymDbContext dbContext) : IPlanRepository
     {
-        public PlanRepository()
-        {
-        }
-
         public void Add(Plan plan)
          => dbContext.Add(plan);
 

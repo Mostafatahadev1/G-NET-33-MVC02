@@ -23,7 +23,7 @@ namespace Gym.DataAccess.Configurations
             {
                 t.HasCheckConstraint(
                     "CK_Sessions_Capacity",
-                    "[Capacity] > BETWEEN 1 AND 25 ");
+                    "[Capacity] BETWEEN 1 AND 25");
 
                 t.HasCheckConstraint(
                     "CK_Sessions_Dates",

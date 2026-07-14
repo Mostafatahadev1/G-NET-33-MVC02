@@ -10,9 +10,6 @@ namespace Gym.DataAccess.Configurations
         {
             builder.ToTable("MemberShips");
 
-
-;
-
             builder.ToTable(t =>
             {
                 t.HasCheckConstraint(

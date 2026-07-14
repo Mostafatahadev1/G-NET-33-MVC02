@@ -1,18 +1,16 @@
+using Gym.DataAccess.Repositries;
 using Gym.Presentation.Data.Contexts;
 using Gym.Presentation.Data.Seeder;
 using Microsoft.EntityFrameworkCore;
-using Gym.DataAccess.Repositries;
-using Gym.DataAccess.Repositries; // ??? ??? ??? ?????? Repositories
 
 var builder = WebApplication.CreateBuilder(args);
 
-
-builder.Services.AddDbContext<GymDbContext>(option =>
+builder.Services.AddDbContext<GymDbContext>(options =>
 {
-    option.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
-// Add services to the container.
+builder.Services.AddScoped<IPlanRepository, PlanRepository>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

@@ -10,9 +10,7 @@ public class UserConfiguration<T> : IEntityTypeConfiguration<T>
 {
     public virtual void Configure(EntityTypeBuilder<T> builder)
     {
-        builder.HasDiscriminator<string>("UserType")
-            .HasValue<Member>("Member")
-            .HasValue<Trainer>("Trainer");
+
 
         builder.Property(u => u.Name)
             .HasMaxLength(100);
@@ -55,13 +53,15 @@ public class UserConfiguration<T> : IEntityTypeConfiguration<T>
 
         builder.ToTable(t =>
         {
-            t.HasCheckConstraint("CK_User_Phone", "LEN([Phone]) = 11 AND[Phone] LIKE 01[0125]%'");
+            t.HasCheckConstraint(
+                "CK_User_Phone",
+                "LEN([Phone]) = 11 AND [Phone] LIKE '01[0125]%'"
+            );
         });
 
 
         // users.tolist(); // softdeleted
 
-        builder.HasQueryFilter(u => !u.IsDeleted);
 
         // enums integer 0 1
 

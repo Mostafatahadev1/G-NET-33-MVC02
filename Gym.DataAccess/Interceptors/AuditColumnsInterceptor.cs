@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace Gymy.DataAccess.Interceptors;
+namespace Gym.DataAccess.Interceptors;
 
 public sealed class AuditColumnsInterceptor : SaveChangesInterceptor
 {

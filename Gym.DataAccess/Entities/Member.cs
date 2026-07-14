@@ -8,8 +8,6 @@ namespace Gym.DataAccess.Entities
 {
     public class Member : User
     {
-        public string? Phone {  get; set; }
-
         public DateTime JoinDate { get; set; }
 
         // Health Record 

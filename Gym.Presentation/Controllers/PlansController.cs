@@ -3,13 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Gym.Presentation.Controllers
 {
-    public class PlansController : Controller
+    public class PlansController(IPlanRepository planRepo) : Controller
     {
-        public IPlanRepository PlanRepo = new PlanRepository();
-
         public async Task<IActionResult> Index()
         {
-            var plans = await PlanRepo.GetAllAsync();
+            var plans = await planRepo.GetAllAsync();
             return View(plans);
         }
 
@@ -20,7 +18,7 @@ namespace Gym.Presentation.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            var plan = await PlanRepo .GetByIdAsync(id);
+            var plan = await planRepo.GetByIdAsync(id);
 
             if (plan == null)
             {

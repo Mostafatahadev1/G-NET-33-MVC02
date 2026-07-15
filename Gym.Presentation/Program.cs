@@ -7,6 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 
 
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<GymDbContext>(options =>
@@ -17,11 +19,10 @@ builder.Services.AddDbContext<GymDbContext>(options =>
 builder.Services.AddScoped<IPlanRepository, PlanRepository>();
 builder.Services.AddControllersWithViews();
 
-//var string? connectionString = builder.Configuration.GetConnectionString ("DefultConnection")
-  //  ??throw new InValidOptionException("Connection string 'DefultConnection' Not found");
+ string? connectionString = builder.Configuration.GetConnectionString ("DefaultConnection")
+    ??throw new InvalidOperationException("Connection string 'DefaultConnection' Not found");
 
-//builder.Services.AddGymDataAccess(connectionString);
-//builder.Services.AddGymBusinessLogic();
+builder.Services.AddGymDataAccess(connectionString);
 
 var app = builder.Build();
 

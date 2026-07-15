@@ -1,7 +1,11 @@
 using Gym.DataAccess.Repositries;
 using Gym.Presentation.Data.Contexts;
 using Gym.Presentation.Data.Seeder;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,10 +17,21 @@ builder.Services.AddDbContext<GymDbContext>(options =>
 builder.Services.AddScoped<IPlanRepository, PlanRepository>();
 builder.Services.AddControllersWithViews();
 
+//var string? connectionString = builder.Configuration.GetConnectionString ("DefultConnection")
+  //  ??throw new InValidOptionException("Connection string 'DefultConnection' Not found");
+
+//builder.Services.AddGymDataAccess(connectionString);
+//builder.Services.AddGymBusinessLogic();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
+else
 {
     app.UseExceptionHandler("/Home/Error");
 }
@@ -31,12 +46,18 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
-await using var Scope = app.Services.CreateAsyncScope();
+if(app.Environment.IsDevelopment())
+{
+    await using var Scope = app.Services.CreateAsyncScope();
+    var dbContext = Scope.ServiceProvider.GetRequiredService<GymDbContext>();
+    await dbContext.Database.MigrateAsync(); // update database 
+    await DatabaseSeeder.SeedAllAsync(dbContext);
+
+}
 
 
-var dbContext = Scope.ServiceProvider.GetRequiredService<GymDbContext>();
 
-await DatabaseSeeder.SeedAllAsync(dbContext);
+
 
 
 app.Run();

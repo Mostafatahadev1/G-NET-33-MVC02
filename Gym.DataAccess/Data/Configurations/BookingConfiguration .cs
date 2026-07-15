@@ -17,8 +17,9 @@ namespace Gym.DataAccess.Configurations
             {
                 x.MemberId,
                 x.SessionId
-            }).IsUnique();
-
+            }).IsUnique()
+                .HasFilter("[IsDeleted] = 0 ");
+            
             builder.HasOne(b => b.Member)
                    .WithMany(m => m.Bookings)
                    .HasForeignKey(b => b.MemberId)

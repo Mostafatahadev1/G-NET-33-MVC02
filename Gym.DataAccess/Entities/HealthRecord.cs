@@ -18,5 +18,9 @@ namespace Gym.DataAccess.Entities
         public int MemberId { get; set; }
 
         public Member Member { get; set; } = null!;
+
+        public string? Notes { get; set; }
+
+
     }
 }

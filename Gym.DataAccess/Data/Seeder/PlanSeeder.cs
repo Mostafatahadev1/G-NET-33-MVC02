@@ -1,16 +1,13 @@
-﻿using Gym.Presentation.Data.Contexts;
-using Gym.Presentation.Models;
+﻿using Gym.DataAccess.Entities;
+using Gym.Presentation.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 
-namespace Gym.Presentation.Presentation.Data.Seeder
+namespace Gym.DataAccess.Data.Seeder
 {
-    public  static class PlanSeeder
+    public static class PlanSeeder
     {
-        public static async Task SeedAsync()
+        public static async Task SeedAsync(GymDbContext dbContext)
         {
-         using var dbContext = new GymDbContext();
-
-
             if (await dbContext.Plans.AnyAsync())
                 return;
 
@@ -23,7 +20,7 @@ namespace Gym.Presentation.Presentation.Data.Seeder
                     DurationDays = 30,
                     Price = 300,
                     IsActive = true,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.UtcNow
                 },
                 new Plan
                 {
@@ -32,7 +29,7 @@ namespace Gym.Presentation.Presentation.Data.Seeder
                     DurationDays = 30,
                     Price = 450,
                     IsActive = true,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.UtcNow
                 },
                 new Plan
                 {
@@ -41,7 +38,7 @@ namespace Gym.Presentation.Presentation.Data.Seeder
                     DurationDays = 30,
                     Price = 600,
                     IsActive = true,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.UtcNow
                 },
                 new Plan
                 {
@@ -50,7 +47,7 @@ namespace Gym.Presentation.Presentation.Data.Seeder
                     DurationDays = 30,
                     Price = 800,
                     IsActive = true,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.UtcNow
                 },
                 new Plan
                 {
@@ -59,7 +56,7 @@ namespace Gym.Presentation.Presentation.Data.Seeder
                     DurationDays = 90,
                     Price = 700,
                     IsActive = true,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.UtcNow
                 },
                 new Plan
                 {
@@ -68,7 +65,7 @@ namespace Gym.Presentation.Presentation.Data.Seeder
                     DurationDays = 90,
                     Price = 1200,
                     IsActive = true,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.UtcNow
                 },
                 new Plan
                 {
@@ -77,7 +74,7 @@ namespace Gym.Presentation.Presentation.Data.Seeder
                     DurationDays = 180,
                     Price = 2200,
                     IsActive = true,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.UtcNow
                 },
                 new Plan
                 {
@@ -86,7 +83,7 @@ namespace Gym.Presentation.Presentation.Data.Seeder
                     DurationDays = 365,
                     Price = 4000,
                     IsActive = true,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.UtcNow
                 },
                 new Plan
                 {
@@ -95,7 +92,7 @@ namespace Gym.Presentation.Presentation.Data.Seeder
                     DurationDays = 365,
                     Price = 7000,
                     IsActive = true,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.UtcNow
                 },
                 new Plan
                 {
@@ -104,13 +101,12 @@ namespace Gym.Presentation.Presentation.Data.Seeder
                     DurationDays = 30,
                     Price = 250,
                     IsActive = false,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.UtcNow
                 }
             };
 
             await dbContext.Plans.AddRangeAsync(plans);
             await dbContext.SaveChangesAsync();
-
         }
     }
 }
